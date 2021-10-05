@@ -61,14 +61,14 @@ if test ! -z "$(cat /var/log/httpd/ssl_request_log|sed -n ''$line_start','$line_
 		#获取ip地址的地理信息：
 		ipinfo=$(curl -s cip.cc/$ip);
 		city=$(echo $ipinfo |awk -F ':' '{print $3}'|awk -F ' ' '{print $1$2$3}');
-		echo $mom$day $time $ip $city $clientinfo, 'subss' >> $(your own local path)/selfcheck_clash_ss.txt;
+		echo $mom$day $time $ip $city $clientinfo, 'subss订阅提醒' >> $(your own local path)/selfcheck_clash_ss.txt;
 		i=$[$i+1];
 		#设置查询时间间隔遵守api规则
 		sleep 3;
 	done
 	echo -e "亲爱的丁丁，又有宝贝订阅了你的服务器啦～ \nip地址:$ip \n地理位置是:$city \n快来查看一下具体情况吧～" | mail -v -s "subss订阅提醒" dingdluan@gmail.com
-	rm -rf /mnt/server_backup_aliyun/selfcheck_clash_ss.txt
-	cp -rf $(your own local path)/selfcheck_clash_ss.txt /mnt/server_backup_aliyun/selfcheck_clash_ss.txt
+	rm -rf $(your own cloud path)/selfcheck_clash_ss.txt
+	cp -rf $(your own local path)/selfcheck_clash_ss.txt $(your own cloud path)/selfcheck_clash_ss.txt
 fi
 
 ######统计dingdingding.yaml订阅情况
@@ -109,8 +109,8 @@ if test ! -z "$(cat /var/log/httpd/ssl_request_log|sed -n ''$line_start','$line_
 		#设置查询时间间隔遵守api规则
 		sleep 3;
 	done
-	echo -e "亲爱的丁丁，$username订阅了你的服务器啦 \nip地址是:$ip \n地理位置为:$city \n客户端是:$clientinfo \n快来查看一下具体情况吧～" | mail -v -s "dingdingding.yaml订阅提醒" dingdluan@gmail.com
-	rm -rf /mnt/server_backup_aliyun/selfcheck_clash_ss.txt
-	cp -rf $(your own local path)/selfcheck_clash_ss.txt /mnt/server_backup_aliyun/selfcheck_clash_ss.txt
+	echo -e "亲爱的丁丁，$username订阅了你的服务器啦 \nip地址是:$ip \n地理位置为:$city \n客户端是:$clientinfo \n快来查看一下具体情况吧～" | mail -v -s "clash订阅提醒" dingdluan@gmail.com
+	rm -rf $(your own cloud path)/selfcheck_clash_ss.txt
+	cp -rf $(your own local path)/selfcheck_clash_ss.txt $(your own cloud path)/selfcheck_clash_ss.txt
 fi
 
